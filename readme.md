@@ -16,11 +16,10 @@
 
 ## Funcionalidades
 
-- [x]  Ao editar o campo e sair dele deverá consultar a API ViaCEP https://viacep.com.br/
-- [x]  Preencher o campos seguintes com os dados retornados pela consulta
-
-* Ao digitar o texto, é aplicado uma máscara de formato 00000-000
-* Ao editar o campo de cep e sair dele consulta a API ViaCEP( https://viacep.com.br/)
+* Ao editar o campo e sair dele deverá consultar a API ViaCEP https://viacep.com.br/.
+* Preencher o campos seguintes com os dados retornados pela consulta.
+* Ao digitar o texto, é aplicado uma máscara de formato 00000-000.
+* Ao editar o campo de cep e sair dele consulta a API ViaCEP( https://viacep.com.br/).
 * Preenche os campos automaticamente
 
 
