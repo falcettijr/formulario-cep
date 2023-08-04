@@ -1,6 +1,5 @@
 let botaoLimpar = document.querySelector('#limpar')
 
-
 const formatarCep = (event) => {
     let cepInput = event.target
     cepInput.value = mascaraCep(cepInput.value)
@@ -13,11 +12,30 @@ const mascaraCep = (value) => {
     return value
 }
 
-const consultarCep = async (value) => {
-    const apiUrl = `https://viacep.com.br/ws/${value}/json`
-    const response = await fetch(apiUrl)
+const consultarCep = async (event) => {
+    const value = event.target.value
+    const valorCorrigido = corrigirCep(value)
+    let retornoCep = await enviarCep(value)
+    console.log(retornoCep);
+    preecherCampos(retornoCep);
+}
+
+const preecherCampos = (retornoCep) => {
+    document.getElementById('rua').value=(retornoCep.logradouro);
+    document.getElementById('bairro').value=(retornoCep.bairro);
+}
+
+
+const corrigirCep = (value) => {
+    value = value.replace("-", "")
+    return value
+}
+
+const enviarCep = async (value) => {
+    const response = await fetch(`https://viacep.com.br/ws/${value}/json`)
     const data = await response.json()
-    console.log(data);
+    return data
+    
 }
 
 //Validação de CEP input

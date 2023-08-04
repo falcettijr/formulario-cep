@@ -11,7 +11,7 @@
     
     <form method="get" action=".">
         <label for="cep">CEP</label>
-        <input type="text" maxlength="9" id="cep" onkeyup="formatarCep(event)" placeholder="00000-000" />
+        <input type="text" maxlength="9" id="cep" onkeyup="formatarCep(event)" onblur="consultarCep(event)" />
 
         <label for="rua">Rua</label>
         <input type="text" text="rua" name="rua" id="rua" placeholder="Digite sua rua" required>
