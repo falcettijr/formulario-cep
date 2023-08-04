@@ -63,11 +63,13 @@ async function carregaPagina(){
         
         let estadoPreenchido = document.getElementById('uf')
         estadoPreenchido.appendChild(optionEstado)
-
     });
 
-    let cidades = estadosCidades.cidades
+}
 
+function popularCidades(event){
+    let ufSelecionado = event.target.value
+    console.log(ufSelecionado);
 }
 
 botaoLimpar.onclick = limpa_formulario;

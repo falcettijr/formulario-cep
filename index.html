@@ -27,7 +27,7 @@
         <input type="text" text="bairro" name="bairro" id="bairro" placeholder="Digite seu bairro" required>
 
         <label for="uf">Estado</label>
-            <select name="uf" id="uf" required>
+            <select onchange="popularCidades(event)" name="uf" id="uf" required>
             </select>
 
         <label for="cidade">Cidade</label>
