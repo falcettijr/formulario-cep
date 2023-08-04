@@ -25,7 +25,6 @@ const preecherCampos = (retornoCep) => {
     document.getElementById('bairro').value=(retornoCep.bairro);
 }
 
-
 const corrigirCep = (value) => {
     value = value.replace("-", "")
     return value
@@ -35,19 +34,13 @@ const enviarCep = async (value) => {
     const response = await fetch(`https://viacep.com.br/ws/${value}/json`)
     const data = await response.json()
     return data
-    
 }
 
-//Validação de CEP input
-// cepInput.addEventListener("keypress", (e) => {
-//     const apenasNumeros = /[0-9]/;
-//     const key = String.fromCharCode(e.keyCode);
-
-//     if(!apenasNumeros.test(key)) {
-//         e.preventDefault();
-//         return;
-//     }
-// });
+const pegarEstadoCidade = async () => {
+    const response = await fetch('https://gist.githubusercontent.com/letanure/3012978/raw/6938daa8ba69bcafa89a8c719690225641e39586/estados-cidades.json')
+    const estadosCidades = await response.json()
+    return estadosCidades
+}  
 
 function limpa_formulario() {
     document.getElementById('cep').value=("");
@@ -59,4 +52,23 @@ function limpa_formulario() {
     document.getElementById('cidade').value=("");
 }
 
+async function carregaPagina(){
+    let estadosCidades = await pegarEstadoCidade()
+    let estados = estadosCidades.estados
+    console.log(estados);
+    estados.forEach(estado => {
+        
+        let optionEstado = document.createElement("option")
+        optionEstado.label = estado.nome
+        optionEstado.value = estado.sigla
+        
+        let estadoPreenchido = document.getElementById('uf')
+        console.log(estadoPreenchido)
+        estadoPreenchido.appendChild(optionEstado)
+
+    });
+}
+
 botaoLimpar.onclick = limpa_formulario;
+window.onload = carregaPagina;
+
