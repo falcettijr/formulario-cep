@@ -55,7 +55,6 @@ function limpa_formulario() {
 async function carregaPagina(){
     let estadosCidades = await pegarEstadoCidade()
     let estados = estadosCidades.estados
-    console.log(estados);
     estados.forEach(estado => {
         
         let optionEstado = document.createElement("option")
@@ -63,10 +62,12 @@ async function carregaPagina(){
         optionEstado.value = estado.sigla
         
         let estadoPreenchido = document.getElementById('uf')
-        console.log(estadoPreenchido)
         estadoPreenchido.appendChild(optionEstado)
 
     });
+
+    let cidades = estadosCidades.cidades
+
 }
 
 botaoLimpar.onclick = limpa_formulario;

@@ -24,6 +24,10 @@ label {
     margin-bottom: 10px;
 }
 
+button{
+    margin-top: 20px;
+}
+
 button,
 input,
 select {
@@ -54,7 +58,7 @@ button, input[type="button"], #limpar {
     cursor: pointer;
 }
 
-button, input[type="button"],#limpar:hover {
+button, input[type="button"], #limpar:hover {
     background-color: #cf250f;
 }
 
