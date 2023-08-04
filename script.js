@@ -15,7 +15,7 @@ const mascaraCep = (value) => {
 const consultarCep = async (event) => {
     const value = event.target.value
     const valorCorrigido = corrigirCep(value)
-    let retornoCep = await enviarCep(value)
+    let retornoCep = await enviarCep(valorCorrigido)
     console.log(retornoCep);
     preecherCampos(retornoCep);
 }
@@ -52,9 +52,10 @@ function limpa_formulario() {
     document.getElementById('cidade').value=("");
 }
 
+let estados = []
 async function carregaPagina(){
     let estadosCidades = await pegarEstadoCidade()
-    let estados = estadosCidades.estados
+    estados = estadosCidades.estados
     estados.forEach(estado => {
         
         let optionEstado = document.createElement("option")
@@ -63,13 +64,20 @@ async function carregaPagina(){
         
         let estadoPreenchido = document.getElementById('uf')
         estadoPreenchido.appendChild(optionEstado)
+
     });
 
 }
 
+
 function popularCidades(event){
     let ufSelecionado = event.target.value
-    console.log(ufSelecionado);
+    let estadoEncontrado = estados.find(function(estado) {
+        if (estado.sigla === ufSelecionado) {
+            return estado
+        }
+    })
+    console.log(estadoEncontrado);
 }
 
 botaoLimpar.onclick = limpa_formulario;
