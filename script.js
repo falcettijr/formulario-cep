@@ -1,9 +1,9 @@
 let botaoLimpar = document.querySelector('#limpar')
 
-//Máscara de CEP
+
 const formatarCep = (event) => {
-    let input = event.target
-    input.value = mascaraCep(input.value)
+    let cepInput = event.target
+    cepInput.value = mascaraCep(cepInput.value)
 }
 
 const mascaraCep = (value) => {
@@ -12,6 +12,24 @@ const mascaraCep = (value) => {
     value = value.replace(/(\d{5})(\d)/,'$1-$2')
     return value
 }
+
+const consultarCep = async (value) => {
+    const apiUrl = `https://viacep.com.br/ws/${value}/json`
+    const response = await fetch(apiUrl)
+    const data = await response.json()
+    console.log(data);
+}
+
+//Validação de CEP input
+// cepInput.addEventListener("keypress", (e) => {
+//     const apenasNumeros = /[0-9]/;
+//     const key = String.fromCharCode(e.keyCode);
+
+//     if(!apenasNumeros.test(key)) {
+//         e.preventDefault();
+//         return;
+//     }
+// });
 
 function limpa_formulario() {
     document.getElementById('cep').value=("");
