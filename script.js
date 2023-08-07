@@ -1,4 +1,8 @@
 let botaoLimpar = document.querySelector("#limpar");
+let botaoProsseguir = document.querySelector("#prosseguir")
+let numero = document.getElementById("numero");
+let cidade = document.getElementById("cidade");
+
 
 const formatarCep = (event) => {
   let cepInput = event.target;
@@ -50,8 +54,11 @@ function limpa_formulario() {
   document.getElementById("numero").value = "";
   document.getElementById("complemento").value = "";
   document.getElementById("bairro").value = "";
-  document.getElementById("estado").value = "";
   document.getElementById("uf").value = "";
+  document.getElementById("cidade").value = "";
+  document.querySelector("#cidade").innerHTML = ""
+  document.querySelector("#cidade").setAttribute("disabled", true)
+
 }
 
 let estados = [];
@@ -68,6 +75,8 @@ async function carregaPagina() {
 }
 
 function popularCidades(event) {
+  document.querySelector("#cidade").innerHTML = ""
+  document.querySelector("#cidade").removeAttribute("disabled")
   let ufSelecionado = event.target.value;
   let estadoEncontrado = estados.find(function (estado) {
     if (estado.sigla === ufSelecionado) {
@@ -82,6 +91,14 @@ function popularCidades(event) {
     cidadePreenchida.appendChild(optionCidade);
   });
 }
+
+// function habilitaProsseguir(){
+//   if (numero.value === "") {
+//     botaoProsseguir.removeAttribute("disabled");
+//   } else {
+//     botaoProsseguir.setAttribute("disabled", true);
+// }
+// }
 
 botaoLimpar.onclick = limpa_formulario;
 window.onload = carregaPagina;

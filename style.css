@@ -38,7 +38,7 @@ select {
     margin-bottom: 20px;
 }
 
-input[type="button"], #enviar {
+input[type="button"], #prosseguir {
     width: 100%;
     padding: 10px;
     background-color: #4556a0;
@@ -62,7 +62,7 @@ button, input[type="button"], #limpar:hover {
     background-color: #cf250f;
 }
 
-input[type="button"],#enviar:hover {
+input[type="button"],#prosseguir:hover {
     background-color: #0e29a5;
 
 }
