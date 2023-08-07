@@ -62,7 +62,6 @@ async function carregaPagina() {
     let optionEstado = document.createElement("option");
     optionEstado.label = estado.nome;
     optionEstado.value = estado.sigla;
-
     let estadoPreenchido = document.getElementById("uf");
     estadoPreenchido.appendChild(optionEstado);
   });
@@ -76,6 +75,14 @@ function popularCidades(event) {
     }
   });
   console.log(estadoEncontrado);
+  let listagemCidades = estadoEncontrado.cidades
+  console.log(listagemCidades);
+  listagemCidades.forEach((cidade) => {
+    let optionCidade = document.createElement('option');
+    optionCidade.label = cidade
+    let cidadePreenchida = document.getElementById("cidade");
+    cidadePreenchida.appendChild(optionCidade)
+  });
 }
 
 botaoLimpar.onclick = limpa_formulario;
