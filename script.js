@@ -50,8 +50,8 @@ function limpa_formulario() {
   document.getElementById("numero").value = "";
   document.getElementById("complemento").value = "";
   document.getElementById("bairro").value = "";
+  document.getElementById("estado").value = "";
   document.getElementById("uf").value = "";
-  document.getElementById("cidade").value = "";
 }
 
 let estados = [];
@@ -74,14 +74,12 @@ function popularCidades(event) {
       return estado;
     }
   });
-  console.log(estadoEncontrado);
-  let listagemCidades = estadoEncontrado.cidades
-  console.log(listagemCidades);
+  let listagemCidades = estadoEncontrado.cidades;
   listagemCidades.forEach((cidade) => {
-    let optionCidade = document.createElement('option');
-    optionCidade.label = cidade
+    let optionCidade = document.createElement("option");
+    optionCidade.label = cidade;
     let cidadePreenchida = document.getElementById("cidade");
-    cidadePreenchida.appendChild(optionCidade)
+    cidadePreenchida.appendChild(optionCidade);
   });
 }
 
