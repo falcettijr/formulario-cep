@@ -2,7 +2,7 @@ let botaoLimpar = document.querySelector("#limpar");
 let botaoProsseguir = document.querySelector("#prosseguir")
 let numero = document.getElementById("numero");
 let cidade = document.getElementById("cidade");
-
+let form = document.getElementById("form");
 
 const formatarCep = (event) => {
   let cepInput = event.target;
@@ -27,6 +27,10 @@ const consultarCep = async (event) => {
 const preecherCampos = (retornoCep) => {
   document.getElementById("rua").value = retornoCep.logradouro;
   document.getElementById("bairro").value = retornoCep.bairro;
+  document.getElementById("uf").value = retornoCep.uf;
+  document.getElementById("uf").dispatchEvent(new Event("change"))
+  document.getElementById("cidade").value = retornoCep.localidade;
+
 };
 
 const corrigirCep = (value) => {
@@ -48,19 +52,6 @@ const pegarEstadoCidade = async () => {
   return estadosCidades;
 };
 
-function limpa_formulario() {
-  document.getElementById("cep").value = "";
-  document.getElementById("rua").value = "";
-  document.getElementById("numero").value = "";
-  document.getElementById("complemento").value = "";
-  document.getElementById("bairro").value = "";
-  document.getElementById("uf").value = "";
-  document.getElementById("cidade").value = "";
-  document.querySelector("#cidade").innerHTML = ""
-  document.querySelector("#cidade").setAttribute("disabled", true)
-
-}
-
 let estados = [];
 async function carregaPagina() {
   let estadosCidades = await pegarEstadoCidade();
@@ -75,30 +66,33 @@ async function carregaPagina() {
 }
 
 function popularCidades(event) {
-  document.querySelector("#cidade").innerHTML = ""
+  document.querySelector("#cidade").innerHTML = "<option value=''></option>"
   document.querySelector("#cidade").removeAttribute("disabled")
   let ufSelecionado = event.target.value;
   let estadoEncontrado = estados.find(function (estado) {
     if (estado.sigla === ufSelecionado) {
       return estado;
+      
     }
   });
   let listagemCidades = estadoEncontrado.cidades;
   listagemCidades.forEach((cidade) => {
     let optionCidade = document.createElement("option");
     optionCidade.label = cidade;
+    optionCidade.value = cidade;
     let cidadePreenchida = document.getElementById("cidade");
     cidadePreenchida.appendChild(optionCidade);
   });
 }
 
-// function habilitaProsseguir(){
-//   if (numero.value === "") {
-//     botaoProsseguir.removeAttribute("disabled");
-//   } else {
-//     botaoProsseguir.setAttribute("disabled", true);
-// }
-// }
+function habilitaProsseguir(){
+    console.log(form.checkValidity())
+  if (form.checkValidity()) {
+    botaoProsseguir.removeAttribute("disabled");
+  } else {
+    botaoProsseguir.setAttribute("disabled", true);
+}
+}
 
-botaoLimpar.onclick = limpa_formulario;
 window.onload = carregaPagina;
+habilitaProsseguir();

@@ -10,7 +10,7 @@
 <body>
     <h1>Formulário de Endereço</h1>
 
-    <form method="get" action=".">
+    <form method="get" action="." id="form">
     <label for="cep">CEP</label>
     <input
         type="text"
@@ -18,6 +18,7 @@
         id="cep"
         onkeyup="formatarCep(event)"
         onblur="consultarCep(event)"
+        required
     />
 
     <label for="rua">Rua</label>
@@ -65,10 +66,12 @@
     </select>
 
     <label for="cidade">Cidade</label>
-    <select name="cidade" id="cidade" disabled required></select>
+    <select name="cidade" id="cidade" disabled required>
+        
+    </select>
 
-    <button id="limpar">Limpar</button>
-    <input type="button" id="prosseguir" value="Prosseguir" onload="habilitaProsseguir(event)" />
+    <button id="limpar" type="reset">Limpar</button>
+    <input type="submit" id="prosseguir" value="Prosseguir" />
     </form>
 </body>
 <script src="script.js"></script>
