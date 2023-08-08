@@ -2,7 +2,9 @@ let botaoLimpar = document.querySelector("#limpar");
 let botaoProsseguir = document.querySelector("#prosseguir")
 let numero = document.getElementById("numero");
 let cidade = document.getElementById("cidade");
-let form = document.getElementById("form");
+let form = document.querySelector("#form");
+let div = document.querySelector("#resultado")
+let titulo = document.querySelector("#titulo")
 
 const formatarCep = (event) => {
   let cepInput = event.target;
@@ -20,7 +22,6 @@ const consultarCep = async (event) => {
   const value = event.target.value;
   const valorCorrigido = corrigirCep(value);
   let retornoCep = await enviarCep(valorCorrigido);
-  console.log(retornoCep);
   preecherCampos(retornoCep);
 };
 
@@ -90,9 +91,38 @@ function habilitaProsseguir(){
   if (form.checkValidity()) {
     botaoProsseguir.removeAttribute("disabled");
   } else {
-    botaoProsseguir.setAttribute("disabled", true);
+    botaoProsseguir.setAttribute("disabled", "enabled");
 }
+}
+function mostraResultado(){
+  div.style.display = "block"
+  form.style.display = "none"
+  titulo.style.display = "none"
+}
+
+
+
+function enviar(){
+
+  let cepEnviado = document.querySelector("#cep").value;
+  let ruaEnviado = document.querySelector("#rua").value;
+  let numeroEnviado = document.querySelector("#numero").value;
+  let complementoEnviado = document.querySelector("#complemento").value;
+  let bairroEnviado = document.querySelector("#bairro").value;
+  let ufEnviado = document.querySelector("#uf").value;
+  let cidadeEnviado = document.querySelector("#cidade").value;
+
+  
+  let formValue = {                                 
+      cep: cepEnviado,
+      rua: ruaEnviado,
+      numero: numeroEnviado,
+      complemento: complementoEnviado,
+      bairro: bairroEnviado,
+      estado: ufEnviado,
+      cidade: cidadeEnviado,
+  };
+  console.log(formValue);
 }
 
 window.onload = carregaPagina;
-habilitaProsseguir();

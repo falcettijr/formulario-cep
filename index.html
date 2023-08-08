@@ -8,10 +8,16 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Formulário de Endereço</h1>
+    <div id="resultado">
+        <ul>
 
-    <form method="get" action="." id="form">
-    <label for="cep">CEP</label>
+        </ul>
+    </div>
+    <h1 id="titulo">Formulário de Endereço</h1>
+
+    <form method="#" action="javascript: enviar()" id="form">
+
+    <label for="cep" autofocus>CEP</label>
     <input
         type="text"
         maxlength="9"
@@ -71,8 +77,11 @@
     </select>
 
     <button id="limpar" type="reset">Limpar</button>
-    <input type="submit" id="prosseguir" value="Prosseguir" />
+    <button id="prosseguir" type="button" value="Prosseguir" onclick="mostraResultado(); enviar()">Prosseguir</button>
+
     </form>
+
+
 </body>
 <script src="script.js"></script>
 </html>
