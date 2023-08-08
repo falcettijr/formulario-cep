@@ -28,7 +28,7 @@ const preecherCampos = (retornoCep) => {
   document.getElementById("rua").value = retornoCep.logradouro;
   document.getElementById("bairro").value = retornoCep.bairro;
   document.getElementById("uf").value = retornoCep.uf;
-  document.getElementById("uf").dispatchEvent(new Event("change"))
+  document.getElementById("uf").dispatchEvent(new Event("change"))//Cria novo evento
   document.getElementById("cidade").value = retornoCep.localidade;
 
 };
