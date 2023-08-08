@@ -112,8 +112,7 @@ function enviar(){
   let ufEnviado = document.querySelector("#uf").value;
   let cidadeEnviado = document.querySelector("#cidade").value;
 
-  
-  let formValue = {                                 
+  const formValue = {                                 
       cep: cepEnviado,
       rua: ruaEnviado,
       numero: numeroEnviado,
@@ -122,7 +121,13 @@ function enviar(){
       estado: ufEnviado,
       cidade: cidadeEnviado,
   };
-  console.log(formValue);
+
+  
+  mostraResultado();
+  const paragrafo = document.createElement("p");
+  div.appendChild(paragrafo);
+  const texto = document.createTextNode(`CEP: ${cepEnviado} RUA: ${ruaEnviado}, NUMERO: ${numeroEnviado}, COMPLEMENTO: ${complementoEnviado} ,BAIRRO: ${bairroEnviado}, ESTADO: ${ufEnviado}, CIDADE: ${cidadeEnviado}`);
+  paragrafo.appendChild(texto);
 }
 
 window.onload = carregaPagina;
