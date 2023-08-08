@@ -86,7 +86,7 @@ function popularCidades(event) {
 }
 
 function habilitaProsseguir(){
-    console.log(form.checkValidity())
+    console.log(form.checkValidity()) //valida o formulário, baseado nos campos required
   if (form.checkValidity()) {
     botaoProsseguir.removeAttribute("disabled");
   } else {
